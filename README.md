@@ -59,3 +59,56 @@ movie-ratings-analytics/
     ```
 
 ## Step 2 — Data Ingestion (CSV → SQLite)
+In this step we build a script that takes a CSV (e.g., IMDb Top 1000 movies) and ingests it into a free SQLite database.
+### 🔧 Requirements
+Make sure `requirements.txt` includes:
+pandas
+sqlalchemy
+
+Install:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 📂 Input data
+Place your CSV inside the data/ folder.
+Example: data/imdb_raw.csv
+
+### 📝 Creating ingest.py
+Inside the scripts/ folder, create a file named ingest.py which:
+Reads a CSV with pandas
+
+Normalizes column names to snake_case
+
+Writes data into SQLite with SQLAlchemy
+
+### 🐍 Run ingestion script
+We provide scripts/ingest.py:
+
+```bash
+python scripts/ingest.py --csv data/imdb_raw.csv
+```
+
+### ✅ Output
+A SQLite database at data/movies.sqlite
+
+Table: raw_movies containing the cleaned CSV data
+
+Column names converted to snake_case
+
+Basic numeric columns coerced into numeric types
+
+Index created on (title, released_year) if those columns exist
+
+### 🔍 Quick check
+Query the DB with sqlite3:
+```bash
+sqlite3 data/movies.sqlite "SELECT COUNT(*) AS rows FROM raw_movies;"
+```
+Or with Python:
+```bash
+import sqlite3, pandas as pd
+con = sqlite3.connect("data/movies.sqlite")
+print(pd.read_sql_query("SELECT COUNT(*) FROM raw_movies;", con))
+con.close()
