@@ -22,6 +22,8 @@ movie-ratings-analytics/
 ├── tests/         # unit/data tests
 └── README.md
 
+```
+
 ## Step 1 — Project Setup
 
 1. **Create and activate a virtual environment**
@@ -30,17 +32,20 @@ movie-ratings-analytics/
    python -m venv venv
    source venv/bin/activate   # Mac/Linux
    venv\Scripts\activate      # Windows
+   ```
 
 2. **Install dependencies**
 
     ```bash
     pip install -r requirements.txt
+    ```
 
 3. **Clone this repo or create the folder structure above**
 
     ```bash
     git clone https://github.com/aishwaryasvs/movie-ratings-analytics.git
     cd movie-ratings-analytics
+    ```
 
 4. **Initialize Git and push to GitHub**(see commit history for scaffold)
 
@@ -51,3 +56,6 @@ movie-ratings-analytics/
     git branch -M main
     git remote add origin https://github.com/aishwaryasvs/movie-ratings-analytics.git
     git push -u origin main
+    ```
+
+## Step 2 — Data Ingestion (CSV → SQLite)
